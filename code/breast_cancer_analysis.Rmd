@@ -60,3 +60,24 @@ fviz_pca_ind(pca_res,
              title = "PCA of Breast Cancer Features") 
 ``` 
 
+## 3. Predictive Modeling: Support Vector Machine (SVM)
+
+We will split the data into training (80%) and testing (20%) sets, then train an SVM to classify the tumors.
+
+```{r ml-model}
+# Set seed for reproducibility
+set.seed(42)
+
+# Create training and test splits
+trainIndex <- createDataPartition(wdbc_clean$diagnosis, p = 0.8, list = FALSE)
+train_data <- wdbc_clean[trainIndex, ]
+test_data  <- wdbc_clean[-trainIndex, ]
+
+# Train an SVM model using radial basis function
+svm_model <- svm(diagnosis ~ ., data = train_data, kernel = "radial", cost = 1, scale = TRUE)
+
+# View model summary
+summary(svm_model) 
+``` 
+
+
