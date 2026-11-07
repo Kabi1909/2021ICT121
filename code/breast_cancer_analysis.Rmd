@@ -80,6 +80,18 @@ svm_model <- svm(diagnosis ~ ., data = train_data, kernel = "radial", cost = 1, 
 summary(svm_model) 
 ``` 
 
+## 4. Model Evaluation and Interpretation
+
+We will predict the diagnoses on our unseen test dataset and generate a confusion matrix to evaluate accuracy.
+
+```{r evaluation}
+# Make predictions on the test set
+svm_predictions <- predict(svm_model, test_data)
+
+# Evaluate using a Confusion Matrix
+conf_matrix <- confusionMatrix(svm_predictions, test_data$diagnosis)
+conf_matrix 
+``` 
 
 
 
