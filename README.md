@@ -1,8 +1,10 @@
 Title: Breast Cancer Tumor Classification using Support Vector Machines
-1. Abstract
+1. Abstract: 
+
 Breast cancer is a leading cause of mortality among women globally. Early and accurate diagnosis is critical for effective treatment and patient survival. This project utilizes the Wisconsin Diagnostic Breast Cancer (WDBC) dataset to classify breast tumors as either benign or malignant using machine learning techniques. Features computed from digitized images of fine needle aspirates (FNA) were analyzed for predictive modeling. A Support Vector Machine (SVM) with a radial basis function kernel was trained on 80% of the dataset and tested on the remaining 20%. Principal Component Analysis (PCA) was conducted to verify feature separability. The final SVM model achieved a highly accurate classification rate on unseen data, demonstrating strong sensitivity and specificity. This automated diagnostic approach highlights the potential of machine learning to assist pathologists in clinical decision-making, reducing human error and expediting diagnosis.
 
-2. Introduction
+2. Introduction: 
+
 Breast cancer diagnosis heavily relies on the microscopic examination of biopsy samples by pathologists. This manual process can be subjective, time-consuming, and prone to human error, particularly when assessing borderline cases. Misdiagnosis or delayed diagnosis drastically affects patient treatment plans and survival outcomes. The aim of this project is to develop a reliable, automated predictive model using Support Vector Machines (SVM) to classify tumors based on cellular features. The underlying hypothesis is that machine learning algorithms can detect complex, multi-dimensional patterns within FNA cytology data to distinguish malignant from benign aspirates with a high degree of accuracy (>95%), thereby providing a robust secondary decision-support tool for medical professionals.
 
 3. Data
