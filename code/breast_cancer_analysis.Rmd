@@ -1,0 +1,12 @@
+---
+title: "Breast Cancer Classification using SVM"
+author: "2021/ICT/121"
+date: "`r Sys.Date()`"
+output: 
+  html_document:
+    toc: true
+    theme: united
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE) 
