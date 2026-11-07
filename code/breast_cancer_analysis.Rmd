@@ -10,3 +10,32 @@ output:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE) 
+``` 
+```{r import-data} 
+# Load required packages
+library(tidyverse)
+library(ggplot2)
+library(caret)
+library(e1071)
+library(factoextra) # For PCA visualization
+
+# Define column names based on dataset documentation
+col_names <- c("id", "diagnosis", 
+               paste0(rep(c("radius", "texture", "perimeter", "area", "smoothness", 
+                            "compactness", "concavity", "concave_points", "symmetry", 
+                            "fractal_dimension"), 3), 
+                      rep(c("_mean", "_se", "_worst"), each = 10)))
+
+# 1. Import data
+# Assuming your R project is open, we navigate to the data folder
+wdbc <- read_csv("../data/wdbc.data", col_names = col_names)
+
+# 2. Quality Control and Cleaning
+# Remove the ID column as it holds no predictive value, and convert diagnosis to a factor
+wdbc_clean <- wdbc %>%
+  select(-id) %>%
+  mutate(diagnosis = factor(diagnosis, levels = c("B", "M"), labels = c("Benign", "Malignant")))
+
+# Check for missing values (QC)
+sum(is.na(wdbc_clean)) # Should be 0 
+``` 
