@@ -39,3 +39,24 @@ wdbc_clean <- wdbc %>%
 # Check for missing values (QC)
 sum(is.na(wdbc_clean)) # Should be 0 
 ``` 
+```{r eda}
+# Class distribution plot
+ggplot(wdbc_clean, aes(x = diagnosis, fill = diagnosis)) +
+  geom_bar() +
+  labs(title = "Distribution of Benign vs Malignant Tumors", x = "Diagnosis", y = "Count") +
+  theme_minimal()
+
+# Principal Component Analysis (PCA)
+# We exclude the first column (diagnosis) and scale the numeric variables
+pca_res <- prcomp(wdbc_clean[, -1], scale. = TRUE)
+
+# Visualize PCA
+fviz_pca_ind(pca_res,
+             geom.ind = "point", 
+             col.ind = wdbc_clean$diagnosis, 
+             palette = c("#00AFBB", "#FC4E07"),
+             addEllipses = TRUE, 
+             legend.title = "Diagnosis",
+             title = "PCA of Breast Cancer Features") 
+``` 
+
