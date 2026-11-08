@@ -16,7 +16,7 @@ Variables: 32 variables. The first two are ID and Diagnosis (M = malignant, B = 
 
 Ethical & Licensing Notes: This is an open-source, publicly available dataset intended for educational and research purposes. All patient data has been fully anonymized, removing identifying information and ensuring no privacy risks or HIPAA/GDPR violations.
 
-4. Methods
+4. Methods: 
 The project workflow consisted of data ingestion, exploratory data analysis (EDA), model training, and evaluation.
 
 Workflow: The dataset was imported and cleaned by removing the non-predictive ID column and factoring the target Diagnosis variable. PCA was performed to visualize class separability. The data was split into training (80%) and testing (20%) subsets.
@@ -33,7 +33,7 @@ caret: For data partitioning and generating the evaluation confusion matrix.
 
 e1071: For implementing the SVM algorithm.
 
-5. Results
+5. Results: 
 Exploratory Data Analysis: The class distribution plot revealed an imbalance expected in medical datasets, with a higher proportion of benign cases.
 
 Principal Component Analysis (PCA): The PCA biplot demonstrated clear spatial clustering. Benign and malignant samples naturally separated along the primary principal components, validating that the chosen features contain strong predictive signals.
