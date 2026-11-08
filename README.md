@@ -51,7 +51,8 @@ Limitations: The primary limitation is the dataset's size (569 instances) and it
 
 Real-world Implications: Despite limitations, this model architecture can be integrated into laboratory software to act as a "second opinion" for pathologists. It can instantly flag high-risk aspirates for prioritized review, streamlining hospital workflows.
 
-7. Conclusion and Future Work
+7. Conclusion and Future Work: 
+
 The project successfully demonstrated that a Support Vector Machine with an RBF kernel is a highly capable algorithm for automated breast cancer classification. Future work should focus on hyperparameter tuning (optimizing the cost and gamma parameters using grid search cross-validation) to squeeze out further accuracy. Additionally, comparing the SVM's performance against other algorithms like Random Forests or deep Neural Networks, and validating the model on a newer, external dataset would solidify its clinical viability.
 
 8. Reproducibility
