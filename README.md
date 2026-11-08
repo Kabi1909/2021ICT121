@@ -55,7 +55,7 @@ Real-world Implications: Despite limitations, this model architecture can be int
 
 The project successfully demonstrated that a Support Vector Machine with an RBF kernel is a highly capable algorithm for automated breast cancer classification. Future work should focus on hyperparameter tuning (optimizing the cost and gamma parameters using grid search cross-validation) to squeeze out further accuracy. Additionally, comparing the SVM's performance against other algorithms like Random Forests or deep Neural Networks, and validating the model on a newer, external dataset would solidify its clinical viability.
 
-8. Reproducibility
+8. Reproducibility: 
 To reproduce this analysis locally:
 
 Clone the GitHub repository to your local machine.
