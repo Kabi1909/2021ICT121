@@ -93,6 +93,3 @@ svm_predictions <- predict(svm_model, test_data)
 conf_matrix <- confusionMatrix(svm_predictions, test_data$status)
 conf_matrix 
 ``` 
-
-
-
