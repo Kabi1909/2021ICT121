@@ -41,3 +41,23 @@ pk_clean <- parkinsons %>%
 # Verify cleaning
 sum(is.na(pk_clean)) 
 ``` 
+```{r eda}
+# Class distribution plot
+ggplot(pk_clean, aes(x = status, fill = status)) +
+  geom_bar() +
+  labs(title = "Distribution of Healthy vs Parkinson's Patients", x = "Diagnosis", y = "Count") +
+  theme_minimal()
+
+# Principal Component Analysis (PCA)
+# We exclude the 'status' column (which is our target variable) and scale the numeric features
+pca_res <- prcomp(pk_clean %>% select(-status), scale. = TRUE)
+
+# Visualize PCA
+fviz_pca_ind(pca_res,
+             geom.ind = "point", 
+             col.ind = pk_clean$status, 
+             palette = c("#00AFBB", "#FC4E07"),
+             addEllipses = TRUE, 
+             legend.title = "Diagnosis",
+             title = "PCA of Voice Acoustic Features") 
+``` 
