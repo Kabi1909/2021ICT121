@@ -1,3 +1,5 @@
+Title: Parkinson's Disease Detection using Acoustic Features 
+
 ### 1. Abstract
 Parkinson's Disease (PD) is a neurodegenerative disorder that heavily impacts motor functions, including speech articulation. Early clinical detection is challenging. This project applies machine learning to biomedical acoustic data to classify patients as healthy or having PD. Using the Oxford Parkinson's Disease Detection dataset, 22 vocal micro-tremor features were analyzed. A Support Vector Machine (SVM) with a radial basis function kernel was trained on 80% of the dataset. Principal Component Analysis (PCA) confirmed the separability of the biological acoustic markers. Evaluated on the remaining 20% test set, the SVM demonstrated high diagnostic accuracy, sensitivity, and specificity. This workflow highlights how non-invasive acoustic biomarkers combined with machine learning can serve as an effective, scalable screening tool for neurodegenerative diseases.
 
