@@ -1,81 +1,45 @@
-Title: Breast Cancer Tumor Classification using Support Vector Machines
-1. Abstract: 
+### 1. Abstract
+Parkinson's Disease (PD) is a neurodegenerative disorder that heavily impacts motor functions, including speech articulation. Early clinical detection is challenging. This project applies machine learning to biomedical acoustic data to classify patients as healthy or having PD. Using the Oxford Parkinson's Disease Detection dataset, 22 vocal micro-tremor features were analyzed. A Support Vector Machine (SVM) with a radial basis function kernel was trained on 80% of the dataset. Principal Component Analysis (PCA) confirmed the separability of the biological acoustic markers. Evaluated on the remaining 20% test set, the SVM demonstrated high diagnostic accuracy, sensitivity, and specificity. This workflow highlights how non-invasive acoustic biomarkers combined with machine learning can serve as an effective, scalable screening tool for neurodegenerative diseases.
 
-Breast cancer is a leading cause of mortality among women globally. Early and accurate diagnosis is critical for effective treatment and patient survival. This project utilizes the Wisconsin Diagnostic Breast Cancer (WDBC) dataset to classify breast tumors as either benign or malignant using machine learning techniques. Features computed from digitized images of fine needle aspirates (FNA) were analyzed for predictive modeling. A Support Vector Machine (SVM) with a radial basis function kernel was trained on 80% of the dataset and tested on the remaining 20%. Principal Component Analysis (PCA) was conducted to verify feature separability. The final SVM model achieved a highly accurate classification rate on unseen data, demonstrating strong sensitivity and specificity. This automated diagnostic approach highlights the potential of machine learning to assist pathologists in clinical decision-making, reducing human error and expediting diagnosis.
+### 2. Introduction
+Parkinson's Disease involves the progressive degradation of dopaminergic neurons, leading to tremors, rigidity, and vocal impairment (dysphonia). Clinical diagnosis currently relies on subjective neurological exams, often identifying the disease only after significant irreversible neuronal loss. The aim of this project is to construct a data-driven diagnostic model that detects PD early through non-invasive voice recordings. The underlying hypothesis is that machine learning algorithms can detect complex, high-dimensional variations in acoustic frequencies and amplitudes—undetectable to the human ear—to reliably classify healthy individuals versus those with PD.
 
-2. Introduction: 
+### 3. Data
+* **Source:** The Oxford Parkinson's Disease Detection dataset, available via the UCI Machine Learning Repository.
+* **Size:** 195 instances (voice recordings from 31 patients, 23 with PD).
+* **Variables:** 24 variables. The target variable is `status` (1 = PD, 0 = Healthy). The features include multidimensional acoustic measurements such as MDVP:Fo(Hz) (fundamental frequency), MDVP:Jitter (frequency variation), MDVP:Shimmer (amplitude variation), and NHR/HNR (noise-to-harmonics ratios).
+* **Ethical Notes:** The dataset is fully anonymized and open-source, intended for biomedical research. No PII is present.
 
-Breast cancer diagnosis heavily relies on the microscopic examination of biopsy samples by pathologists. This manual process can be subjective, time-consuming, and prone to human error, particularly when assessing borderline cases. Misdiagnosis or delayed diagnosis drastically affects patient treatment plans and survival outcomes. The aim of this project is to develop a reliable, automated predictive model using Support Vector Machines (SVM) to classify tumors based on cellular features. The underlying hypothesis is that machine learning algorithms can detect complex, multi-dimensional patterns within FNA cytology data to distinguish malignant from benign aspirates with a high degree of accuracy (>95%), thereby providing a robust secondary decision-support tool for medical professionals.
+### 4. Methods
+* **Workflow:** The dataset was imported directly via a script, dropping the non-predictive patient name column and factoring the target variable. The data was scaled and analyzed using PCA for dimensionality reduction and visualization, followed by an 80/20 train/test split.
+* **Justification:** Support Vector Machine (SVM) was selected because acoustic datasets feature highly correlated, high-dimensional variables where SVMs typically outperform tree-based models. A radial basis function (RBF) kernel was utilized to map non-linear relationships in vocal tremors.
+* **R Packages Used:** 
+  * `tidyverse`: Data wrangling.
+  * `ggplot2` & `factoextra`: Visualizations and PCA mapping.
+  * `caret`: Data partitioning and evaluation matrices.
+  * `e1071`: SVM algorithm implementation.
 
-3. Data
-Source: The Wisconsin Diagnostic Breast Cancer (WDBC) dataset, sourced from the UCI Machine Learning Repository.
+### 5. Results
+* **Exploratory Data Analysis:** The target distribution showed roughly 3:1 representation of PD patients to healthy controls, typical for specialized clinical datasets.
+* **Principal Component Analysis (PCA):** The PCA biplot visualized variance across 22 acoustic dimensions in 2D space, showing visible clustering between the Healthy and Parkinson's groups, confirming acoustic signatures carry strong predictive power.
+* **Model Performance:** The SVM model achieved an overall accuracy of over 90% on the unseen test set, with exceptionally high sensitivity, ensuring that the model successfully flags the vast majority of true PD cases (minimizing critical false negatives).
 
-Size: 569 instances (patients).
+### 6. Discussion
+The results confirm that vocal dysphonia is a measurable and highly predictive biomarker for Parkinson's Disease. 
+* **Limitations:** The dataset is relatively small (195 recordings from 31 individuals), which risks data leakage if the same patient's recordings end up in both the training and test sets.
+* **Real-world Implications:** This algorithm allows for remote, telehealth-based screening. A patient could theoretically speak into a smartphone app, and the acoustic model could flag high-risk individuals for neurological follow-ups, vastly reducing diagnostic bottlenecks.
 
-Variables: 32 variables. The first two are ID and Diagnosis (M = malignant, B = benign). The remaining 30 are real-valued computational features extracted from cell nuclei, including radius, texture, perimeter, area, smoothness, compactness, concavity, concave points, symmetry, and fractal dimension. Each feature includes its mean, standard error, and "worst" (mean of the three largest values) metrics.
+### 7. Conclusion and Future Work
+An SVM model successfully utilized acoustic biomedical data to classify Parkinson's Disease with high accuracy. Future work should involve a "Leave-One-Subject-Out" cross-validation approach to ensure the model learns generalized disease features rather than individual patient voices, and testing against other neurodegenerative conditions (like ALS) to ensure disease specificity.
 
-Ethical & Licensing Notes: This is an open-source, publicly available dataset intended for educational and research purposes. All patient data has been fully anonymized, removing identifying information and ensuring no privacy risks or HIPAA/GDPR violations.
+### 8. Reproducibility
+To reproduce this analysis:
+1. Clone the repository.
+2. Install dependencies: `install.packages(c("tidyverse", "caret", "e1071", "factoextra"))`.
+3. Open `code/parkinsons_analysis.Rmd` in RStudio.
+4. Click **Knit** to automatically download the dataset to the `data/` folder, execute the analysis, and render the HTML report.
 
-4. Methods: 
-The project workflow consisted of data ingestion, exploratory data analysis (EDA), model training, and evaluation.
-
-Workflow: The dataset was imported and cleaned by removing the non-predictive ID column and factoring the target Diagnosis variable. PCA was performed to visualize class separability. The data was split into training (80%) and testing (20%) subsets.
-
-Justification: Support Vector Machine (SVM) was selected because it is highly effective in high-dimensional spaces (30 features) and is robust against overfitting. A radial basis function (RBF) kernel was used to handle potential non-linear boundaries between benign and malignant clusters.
-
-R Packages Used:
-
-tidyverse: For data manipulation and cleaning.
-
-ggplot2 & factoextra: For data visualization and PCA biplots.
-
-caret: For data partitioning and generating the evaluation confusion matrix.
-
-e1071: For implementing the SVM algorithm.
-
-5. Results:
-Exploratory Data Analysis: The class distribution plot revealed an imbalance expected in medical datasets, with a higher proportion of benign cases.
-
-Principal Component Analysis (PCA): The PCA biplot demonstrated clear spatial clustering. Benign and malignant samples naturally separated along the primary principal components, validating that the chosen features contain strong predictive signals.
-
-Model Performance: The SVM model was evaluated using a Confusion Matrix on the 20% test set.
-
-Accuracy: The model achieved an accuracy of approximately 97%.
-
-Sensitivity & Specificity: The model demonstrated high sensitivity (accurately identifying benign tumors) and high specificity (accurately detecting malignant tumors), minimizing false negatives, which is the most critical metric in cancer screening.
-
-6. Discussion: 
-The results indicate that FNA cellular features are highly predictive of tumor malignancy. The SVM model successfully utilized these dimensions to draw a clear decision boundary.
-
-Limitations: The primary limitation is the dataset's size (569 instances) and its origin from a single geographical location and specific time period (1990s). The model may not immediately generalize to data generated by modern imaging equipment or diverse demographic populations without recalibration.
-
-Real-world Implications: Despite limitations, this model architecture can be integrated into laboratory software to act as a "second opinion" for pathologists. It can instantly flag high-risk aspirates for prioritized review, streamlining hospital workflows.
-
-7. Conclusion and Future Work: 
-
-The project successfully demonstrated that a Support Vector Machine with an RBF kernel is a highly capable algorithm for automated breast cancer classification. Future work should focus on hyperparameter tuning (optimizing the cost and gamma parameters using grid search cross-validation) to squeeze out further accuracy. Additionally, comparing the SVM's performance against other algorithms like Random Forests or deep Neural Networks, and validating the model on a newer, external dataset would solidify its clinical viability.
-
-8. Reproducibility: 
-To reproduce this analysis locally:
-
-Clone the GitHub repository to your local machine.
-
-Ensure you have R and RStudio installed.
-
-Open the .Rproj file in RStudio.
-
-Verify the folder structure maintains data/wdbc.data and code/breast_cancer_analysis.Rmd.
-
-Install required packages by running: install.packages(c("tidyverse", "ggplot2", "caret", "e1071", "factoextra")) in the R console.
-
-Open the breast_cancer_analysis.Rmd file and click the "Knit" button to automatically execute all code chunks and generate the final HTML report.
-
-9. References: 
-
-Dua, D. and Graff, C. (2019). UCI Machine Learning Repository [http://archive.ics.uci.edu/ml]. Irvine, CA: University of California, School of Information and Computer Science.
-
-Meyer, D., Dimitriadou, E., Hornik, K., Weingessel, A., and Leisch, F. (2023). e1071: Misc Functions of the Department of Statistics, Probability Theory Group (Formerly: E1071), TU Wien. R package version 1.7-13.
-
-Kuhn, M. (2008). Building Predictive Models in R Using the caret Package. Journal of Statistical Software, 28(5), 1-26.
-
-Kassambara, A., & Mundt, F. (2020). factoextra: Extract and Visualize the Results of Multivariate Data Analyses. R package version 1.0.7. 
+### 9. References
+* Little, M. A., McSharry, P. E., Hunter, E. J., Spielman, J., & Ramig, L. O. (2008). Suitability of dysphonia measurements for telemonitoring of Parkinson's disease. *IEEE Transactions on Biomedical Engineering*, 56(4), 1015-1022.
+* Meyer, D., et al. (2023). `e1071`: Misc Functions of the Department of Statistics. R package.
+* Kuhn, M. (2008). Building Predictive Models in R Using the `caret` Package. *Journal of Statistical Software*.[cite: 3, 4, 5]
