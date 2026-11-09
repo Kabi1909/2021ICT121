@@ -61,3 +61,24 @@ fviz_pca_ind(pca_res,
              legend.title = "Diagnosis",
              title = "PCA of Voice Acoustic Features") 
 ``` 
+
+## 3. Predictive Modeling: Support Vector Machine (SVM)
+
+#We partition the data (80% training, 20% testing) and train a Support Vector Machine to #classify patients based on their vocal acoustics.
+
+```{r ml-model}
+set.seed(42)
+
+# Create training and test splits (80% training, 20% testing)
+trainIndex <- createDataPartition(pk_clean$status, p = 0.8, list = FALSE)
+train_data <- pk_clean[trainIndex, ]
+test_data  <- pk_clean[-trainIndex, ]
+
+# Train an SVM model using radial basis function
+svm_model <- svm(status ~ ., data = train_data, kernel = "radial", cost = 1, scale = TRUE)
+
+# View model summary
+summary(svm_model) 
+``` 
+
+
