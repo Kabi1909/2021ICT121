@@ -42,4 +42,4 @@ To reproduce this analysis:
 ### 9. References
 * Little, M. A., McSharry, P. E., Hunter, E. J., Spielman, J., & Ramig, L. O. (2008). Suitability of dysphonia measurements for telemonitoring of Parkinson's disease. *IEEE Transactions on Biomedical Engineering*, 56(4), 1015-1022.
 * Meyer, D., et al. (2023). `e1071`: Misc Functions of the Department of Statistics. R package.
-* Kuhn, M. (2008). Building Predictive Models in R Using the `caret` Package. *Journal of Statistical Software*.[cite: 3, 4, 5]
+* Kuhn, M. (2008). Building Predictive Models in R Using the `caret` Package. *Journal of Statistical Software*.[cite: 3, 4, 5] 
