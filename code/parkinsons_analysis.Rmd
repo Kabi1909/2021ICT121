@@ -29,3 +29,6 @@ dest_file <- "../data/parkinsons.csv"
 if (!file.exists(dest_file)) {
   download.file(url = data_url, destfile = dest_file, mode = "wb")
 }
+
+# 3. Read the safely downloaded local file
+parkinsons <- read_csv(dest_file)
