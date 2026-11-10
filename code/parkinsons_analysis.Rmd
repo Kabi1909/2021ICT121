@@ -32,3 +32,12 @@ if (!file.exists(dest_file)) {
 
 # 3. Read the safely downloaded local file
 parkinsons <- read_csv(dest_file)
+
+# 4. Clean data: remove the patient 'name' column and factor the 'status' target (0 = Healthy, 1 = Parkinson's)
+pk_clean <- parkinsons %>%
+  select(-name) %>%
+  mutate(status = factor(status, levels = c(0, 1), labels = c("Healthy", "Parkinsons")))
+
+# Verify cleaning
+sum(is.na(pk_clean)) 
+``` 
